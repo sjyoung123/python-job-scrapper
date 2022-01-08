@@ -61,6 +61,11 @@ def extract_indeed_jobs(last_page):
     soup = BeautifulSoup(result.text,"html.parser")
     results = soup.find_all("div",{"class":"job_seen_beacon"})
     for result in results:
-        title = result.find("table",{"class":"jobCard_mainContent"}).find("h2",{"class":"jobTitle"}).find(title=True).string
-        print(title)
+        title = (
+            result
+            .find("table",{"class":"jobCard_mainContent"})
+            .find("h2",{"class":"jobTitle"}).find(title=True).string
+            )
+        company = (result.find("span",{"class":"companyName"}).string)
+        print(company)
     return jobs
